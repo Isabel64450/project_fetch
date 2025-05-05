@@ -15,7 +15,7 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: center; /* Centre verticalement */
-  height: 100vh; /* Hauteur totale de la fenêtre */
+  /* height: 100vh; */ /* Hauteur totale de la fenêtre */
   margin: 0;
 
   background-color: dimgray;

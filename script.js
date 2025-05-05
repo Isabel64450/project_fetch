@@ -117,3 +117,59 @@ loadAllBtn.addEventListener("click", () => {
 
 // --- Démarrage ---
 fetchPosts();
+
+const userContainer = document.getElementById("user-container");
+const userPrevBtn = document.getElementById("prev-btn");
+const userNextBtn = document.getElementById("next-btn");
+
+currentPage = 1;
+const usersPerPage = 5;
+let users = [];
+
+// Fonction pour récupérer et stocker les utilisateurs
+const fetchUsers = async () => {
+  try {
+    const response = await fetch("https://jsonplaceholder.typicode.com/users");
+    users = await response.json();
+    displayUsers();
+  } catch (error) {
+    console.error("Erreur de chargement des utilisateurs :", error);
+  }
+};
+
+// Fonction pour afficher les utilisateurs en fonction de la page
+const displayUsers = () => {
+  const startIndex = (currentPage - 1) * usersPerPage;
+  const endIndex = startIndex + usersPerPage;
+  const usersToDisplay = users.slice(startIndex, endIndex);
+
+  // Nettoyer et afficher les utilisateurs //
+  userContainer.innerHTML = "";
+  usersToDisplay.forEach((user) => {
+    const userElement = document.createElement("p");
+    userElement.textContent = `${user.id}. ${user.name} - ${user.email}`;
+    userContainer.appendChild(userElement);
+  });
+
+  // Désactiver les boutons en cas de limite
+  userPrevBtn.disabled = currentPage === 1;
+  userNextBtn.disabled = endIndex >= users.length;
+};
+
+// Gestion des boutons de pagination
+userPrevBtn.addEventListener("click", () => {
+  if (currentPage > 1) {
+    currentPage--;
+    displayUsers();
+  }
+});
+
+userNextBtn.addEventListener("click", () => {
+  if (currentPage * usersPerPage < users.length) {
+    currentPage++;
+    displayUsers();
+  }
+});
+
+// Chargement initial des utilisateurs
+fetchUsers();
