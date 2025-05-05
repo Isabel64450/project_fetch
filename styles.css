@@ -1,0 +1,32 @@
+#user-container {
+  margin-bottom: 20px;
+  margin-left: 20px;
+}
+button {
+  background-color: cornflowerblue;
+  margin: 5px;
+  padding: 5px;
+  cursor: pointer;
+  margin-left: 40px;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center; /* Centre verticalement */
+  height: 100vh; /* Hauteur totale de la fenêtre */
+  margin: 0;
+
+  background-color: dimgray;
+}
+
+#users {
+  height: 500px;
+  width: 500px;
+  background-color: cornsilk;
+  margin-left: 20px;
+}
+h2 {
+  margin-left: 50px;
+}
